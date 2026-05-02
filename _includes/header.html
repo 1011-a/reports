@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="{{ '/' | relative_url }}" class="site-header__brand">
+      <span class="site-header__mark">▮</span>
+      <span class="site-header__title">{{ site.title }}</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Primary">
+      {% for topic in site.topics %}
+        <a href="{{ '/' | append: topic.slug | append: '/' | relative_url }}">{{ topic.title }}</a>
+      {% endfor %}
+      <a href="https://github.com/1011-a/reports" rel="noopener" class="site-header__github">GitHub</a>
+      <button type="button" id="theme-toggle" class="site-header__theme" aria-label="Toggle theme">
+        <span class="site-header__theme-icon" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>

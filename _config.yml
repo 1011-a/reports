@@ -1,0 +1,100 @@
+title: Reports
+description: Deep-dive technical reports on AI models, systems, and tooling.
+author: 1011-a
+url: "https://1011-a.github.io"
+baseurl: "/reports"
+
+# jekyll-seo-tag picks these up for OG / Twitter card defaults
+logo: /assets/og-default.png
+twitter:
+  username: 1011-a
+  card: summary_large_image
+social:
+  name: Reports
+  links:
+    - https://github.com/1011-a/reports
+defaults_for_seo: true
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+permalink: pretty
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  typographic_symbols:
+    hellip: "…"
+    ndash: "–"
+    mdash: "—"
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+      image: /assets/og-default.png
+  - scope:
+      path: ""
+    values:
+      layout: page
+      image: /assets/og-default.png
+  - scope:
+      path: "deepseek-v4"
+    values:
+      image: /assets/images/deepseek-v4/v4-cover.png
+
+# Topics on the home page — order matters
+topics:
+  - slug: deepseek-v4
+    title: DeepSeek V4
+    subtitle: A research report on DeepSeek V4, released 2026-04-24.
+    status: In progress
+    updated: 2026-04-26
+
+# Per-topic sidebar navigation, grouped
+sidebar:
+  deepseek-v4:
+    - group: Read first
+      items:
+        - { title: "Overview", url: "/deepseek-v4/" }
+        - { title: "The V4 thesis", url: "/deepseek-v4/thesis/" }
+        - { title: "Choosing the model", url: "/deepseek-v4/api/#choosing-v4-pro-vs-v4-flash" }
+        - { title: "API documentation", url: "/deepseek-v4/api/" }
+        - { title: "V3 → V4 migration", url: "/deepseek-v4/migration/" }
+    - group: Detail
+      items:
+        - { title: "News & timeline", url: "/deepseek-v4/news/" }
+        - { title: "Technical details", url: "/deepseek-v4/technical/" }
+        - { title: "Benchmarks", url: "/deepseek-v4/benchmarks/" }
+        - { title: "Self-hosting", url: "/deepseek-v4/self-hosting/" }
+        - { title: "Independent testing", url: "/deepseek-v4/testing/" }
+        - { title: "Limitations & safety", url: "/deepseek-v4/limitations/" }
+    - group: Reference
+      items:
+        - { title: "References", url: "/deepseek-v4/references/" }
+        - { title: "Glossary", url: "/deepseek-v4/glossary/" }
+        - { title: "Errata", url: "/deepseek-v4/errata/" }
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - node_modules/
+  - README.md
+  - LICENSE
+  - NOTICE.md
+  - tests/
+  - scripts/
+  - "**/configs/*.json"
+
+include:
+  - _redirects

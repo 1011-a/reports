@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__line">
+      <span class="site-footer__brand">{{ site.title }}</span>
+      <span class="site-footer__sep">·</span>
+      <a href="https://github.com/1011-a/reports">Source on GitHub</a>
+      <span class="site-footer__sep">·</span>
+      <a href="{{ '/changelog/' | relative_url }}">Changelog</a>
+      <span class="site-footer__sep">·</span>
+      <a href="{{ '/feed.xml' | relative_url }}">Atom feed</a>
+      <span class="site-footer__sep">·</span>
+      <a href="https://github.com/1011-a/reports/subscription">Watch repo for updates</a>
+    </p>
+    <p class="site-footer__copyright">© {{ site.time | date: "%Y" }} {{ site.author }}. Content licensed CC BY 4.0.</p>
+  </div>
+</footer>

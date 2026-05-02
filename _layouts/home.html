@@ -1,0 +1,63 @@
+---
+layout: default
+---
+<article class="home">
+  <header class="home__hero">
+    <p class="home__eyebrow">{{ site.title }}</p>
+    <h1 class="home__title">{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="home__subtitle">{{ page.subtitle }}</p>{% endif %}
+  </header>
+
+  {% if page.featured %}
+    <section class="home__featured">
+      {% for f in page.featured %}
+        <article class="featured-card">
+          {% if f.image %}
+            <a href="{{ f.url | relative_url }}" class="featured-card__image-link" aria-hidden="true">
+              <img src="{{ f.image | relative_url }}" alt="" class="featured-card__image">
+            </a>
+          {% endif %}
+          <div class="featured-card__body">
+            <p class="featured-card__eyebrow">{{ f.eyebrow }}</p>
+            <h2 class="featured-card__title"><a href="{{ f.url | relative_url }}">{{ f.title }}</a></h2>
+            <p class="featured-card__dek">{{ f.dek }}</p>
+            {% if f.findings %}
+              <ul class="featured-card__findings">
+                {% for finding in f.findings %}
+                  <li>{{ finding | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            <a href="{{ f.url | relative_url }}" class="featured-card__cta">Read the report →</a>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <section class="home__topics">
+    <h2 class="home__section-title">All reports</h2>
+    <ul class="topic-list">
+      {% for topic in site.topics %}
+        <li class="topic-card">
+          <a href="{{ '/' | append: topic.slug | append: '/' | relative_url }}" class="topic-card__link">
+            <h3 class="topic-card__title">{{ topic.title }}</h3>
+            {% if topic.subtitle %}<p class="topic-card__subtitle">{{ topic.subtitle }}</p>{% endif %}
+            <p class="topic-card__meta">
+              <span class="topic-card__status">{{ topic.status }}</span>
+              <span class="topic-card__sep">·</span>
+              <span class="topic-card__updated">Updated {{ topic.updated }}</span>
+            </p>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="home__about">
+    <h2 class="home__section-title">About</h2>
+    <div class="prose">
+      {{ content }}
+    </div>
+  </section>
+</article>

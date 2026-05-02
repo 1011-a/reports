@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{% assign url_parts = page.url | remove_first: site.baseurl | split: "/" %}
+{% assign topic_slug = url_parts[1] %}
+{% assign sidebar_items = site.sidebar[topic_slug] %}
+
+<article class="page {% if sidebar_items %}page--with-sidebar{% endif %}">
+  {% if sidebar_items %}
+    <aside class="sidebar" aria-label="Section navigation">
+      <div class="sidebar__topic">
+        {% for topic in site.topics %}
+          {% if topic.slug == topic_slug %}
+            <span class="sidebar__eyebrow">Report</span>
+            <a href="{{ '/' | append: topic.slug | append: '/' | relative_url }}" class="sidebar__title">{{ topic.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <nav class="sidebar__nav">
+        {% for group in sidebar_items %}
+          {% if group.group %}
+            <p class="sidebar__group-label">{{ group.group }}</p>
+            <ul>
+              {% for item in group.items %}
+                {% assign item_url = item.url | relative_url %}
+                <li{% if page.url == item.url or page.url == item.url | append: 'index.html' %} class="is-active"{% endif %}>
+                  <a href="{{ item_url }}">{{ item.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {% comment %}Fallback for ungrouped flat lists{% endcomment %}
+            <ul>
+              {% assign item_url = group.url | relative_url %}
+              <li{% if page.url == group.url %} class="is-active"{% endif %}>
+                <a href="{{ item_url }}">{{ group.title }}</a>
+              </li>
+            </ul>
+          {% endif %}
+        {% endfor %}
+      </nav>
+    </aside>
+  {% endif %}
+
+  <div class="page__body">
+    {% if page.title and page.hide_title != true %}
+      <header class="page__header">
+        {% if page.eyebrow %}<p class="page__eyebrow">{{ page.eyebrow }}</p>{% endif %}
+        <h1 class="page__title">{{ page.title }}</h1>
+        {% if page.subtitle %}<p class="page__subtitle">{{ page.subtitle }}</p>{% endif %}
+        {% if page.updated %}<p class="page__meta">Updated {{ page.updated }}</p>{% endif %}
+      </header>
+    {% endif %}
+
+    <div class="prose">
+      {{ content }}
+    </div>
+  </div>
+</article>
